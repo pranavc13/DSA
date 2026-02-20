@@ -29,7 +29,7 @@ public:
             nodes[i]->next = nodes[i+1];
         }
         nodes[n-1]->next = nullptr;
-        return nodes[0];
+        return nodes[0] ;
 
         
     }
