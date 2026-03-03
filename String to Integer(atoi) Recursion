@@ -1,0 +1,41 @@
+class Solution {
+public:
+    
+    int solve(string &s, int index, long long current, int sign) {
+        if (index >= s.length() || !isdigit(s[index])) {
+            return sign * current;
+        }
+        
+        int digit = s[index] - '0';
+        
+        if (current > (LLONG_MAX - digit) / 10) {
+            return (sign == 1) ? INT_MAX : INT_MIN;
+        }
+        
+        current = current * 10 + digit;
+        
+        if (sign == 1 && current > INT_MAX) return INT_MAX;
+        if (sign == -1 && -current < INT_MIN) return INT_MIN;
+        
+        return solve(s, index + 1, current, sign);
+    }
+    
+    int myAtoi(string s) {
+        int n = s.length();
+        int index = 0;
+        
+        while (index < n && s[index] == ' ') {
+            index++;
+        }
+        
+        if (index >= n) return 0;
+        
+        int sign = 1;
+        if (s[index] == '+' || s[index] == '-') {
+            if (s[index] == '-') sign = -1;
+            index++;
+        }
+        
+        return solve(s, index, 0, sign);
+    }
+};
