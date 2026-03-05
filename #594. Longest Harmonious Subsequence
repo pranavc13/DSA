@@ -13,7 +13,6 @@ public:
                 maxLength = max(maxLength, freq[num] + freq[num + 1]);
             }
         }
-        
         return maxLength;
     }
 };
