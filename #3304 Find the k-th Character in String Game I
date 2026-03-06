@@ -9,6 +9,7 @@ public:
                 word.push_back((word[i] + 1) % 26);
             }
         }
+
         return 'a' + word[k - 1];
     }
 };
