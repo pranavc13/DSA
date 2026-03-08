@@ -35,7 +35,6 @@ public:
             if (s[index] == '-') sign = -1;
             index++;
         }
-        
         return solve(s, index, 0, sign);
     }
 };
