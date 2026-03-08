@@ -30,6 +30,5 @@ public:
         }
         nodes[n-1]->next = nullptr;
         return nodes[0] ;
-
     }
 };
