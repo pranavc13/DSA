@@ -4,7 +4,6 @@ class Solution {
     string ans;
     vector<int> count(26);
     vector<char> possibleChars;
-
     queue<string> q{{""}};
 
     for (const char c : s)
