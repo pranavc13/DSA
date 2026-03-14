@@ -6,7 +6,7 @@ public:
             freq[num]++;
         }
         
-        int maxLength = 0;
+       int maxLength = 0;
         for (auto& p : freq) {
             int num = p.first;
             if (freq.count(num + 1)) {
