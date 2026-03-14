@@ -41,7 +41,6 @@ private:
     }
 };
 
-
 class Solution2 {
 public:
     long long kMirror(int k, int n) {
