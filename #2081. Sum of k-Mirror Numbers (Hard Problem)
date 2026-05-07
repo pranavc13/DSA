@@ -81,6 +81,7 @@ private:
         return result;
     }
 
+
     bool is_mirror(const string& s) {
         int left = 0, right = size(s) - 1;
         while (left < right) {
@@ -88,6 +89,7 @@ private:
                 return false;
             }
         }
-        return true;
+     
+return true;
     }
 };
