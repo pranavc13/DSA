@@ -1,0 +1,31 @@
+class Solution {
+public:
+    bool isPalindrome(string s){
+        string s1 = s;
+        reverse(s1.begin(), s1.end());
+        return s1 == s;
+    }
+    void getallpalindromes(string s, vector<string>& palindroms, vector<vector<string>>&ans){
+        if(s.size() == 0){
+            ans.push_back(palindroms);
+            return;
+        }
+        for(int i=0; i<s.size(); i++){
+           string parts = s.substr(0, i+1);
+
+           if(isPalindrome(parts)){
+            palindroms.push_back(parts);
+            getallpalindromes(s.substr(i+1),  palindroms, ans);
+            palindroms.pop_back();
+           }
+        }
+    }
+    vector<vector<string>> partition(string s) {
+        vector<string> palindroms;
+        vector<vector<string>>ans;
+        getallpalindromes(s,palindroms,ans);
+        return ans;
+
+        
+    }
+};
