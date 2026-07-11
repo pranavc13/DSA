@@ -1,0 +1,36 @@
+class Solution {
+ public:
+  set<vector<int>> s;
+  void solve(vector<int>& candidates, int target, int i, vector<int>&combi, vector<vector<int>>&ans){
+    if(i == candidates.size() || target <0){
+        return;
+    }
+    if(target == 0){
+        if(s.find(combi) == s.end()){
+            ans.push_back(combi);
+            s.insert(combi);
+        }
+        return;
+        
+    }
+    combi.push_back(candidates[i]);
+    solve(candidates, target - candidates[i], i+1, combi, ans);
+    solve(candidates, target - candidates[i], i, combi, ans);
+    combi.pop_back();
+    //exclusion 
+
+    solve(candidates, target, i+1, combi, ans);
+  }
+
+   
+  vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
+  int n = candidates.size();
+  vector<int> combi;
+  vector<vector<int>> ans;
+  solve(candidates, target, 0, combi, ans);
+  return ans;
+    
+  }
+};
+  
+
