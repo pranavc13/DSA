@@ -1,0 +1,53 @@
+class Solution {
+public:
+    int findleft(vector<int>& nums, int target){
+        int n = nums.size();
+        int low =0;
+        int high = n-1;
+        int first_pos = -1;
+        while(low<=high){
+          int mid = low + (high-low)/2;
+          if(nums[mid] == target){
+            first_pos = mid;
+            high = mid-1;
+         }
+         else if(nums[mid] < target){
+            low = mid+1;
+         }
+         else {
+            high = mid-1;
+         }
+        }
+        return first_pos;
+        
+    }
+    int findRight(vector<int>& nums, int target){
+        int n = nums.size();
+        int low  = 0;
+        int high = n-1;
+        int last_pos = -1;
+        while(low<=high){
+            int mid  = low + (high-low)/2;
+
+            if(nums[mid] == target){
+                last_pos = mid;
+                low = mid + 1;
+            }
+            else if(nums[mid] < target){
+            low = mid+1;
+         }
+         else {
+            high = mid-1;
+         }
+        }
+        return last_pos;
+    }
+    vector<int> searchRange(vector<int>& nums, int target) {
+        int first = findleft(nums, target);
+        if(first == -1){
+            return {-1, -1};
+        }
+        int last = findRight(nums, target);
+        return {first, last};
+    }
+};
