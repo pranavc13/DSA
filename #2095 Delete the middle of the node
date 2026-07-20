@@ -16,7 +16,5 @@ public:
             delete slow;
             return head;
             
-        }
-        
-    
+        }           
 };
