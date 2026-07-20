@@ -28,7 +28,6 @@ class Solution {
     while (stack.size() > 1 && heights[stack.top()] > heights[i]) {
       const int j = stack.top();
       stack.pop();
-      
       sum -= static_cast<long>(abs(j - stack.top())) * heights[j];
     }
    
