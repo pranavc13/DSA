@@ -1,0 +1,39 @@
+class Solution {
+public:
+    bool canPass(vector<int>& weights, int days, int m){
+        int day = 1;
+        int currLoad = 0;
+        for(int i=0; i<weights.size(); i++){
+            if(currLoad + weights[i] > m){
+              day++;
+              currLoad = weights[i];
+            }
+            else {
+                currLoad += weights[i];
+            }
+        }
+        return day <= days;
+    }
+    int shipWithinDays(vector<int>& weights, int days) {
+        int low = *max_element(weights.begin(), weights.end());
+        int high = 0;
+        for(int i=0; i<weights.size(); i++){
+            high += weights[i];
+        }
+        int bestans = high;
+        while(low<=high){
+            int mid = low + (high - low)/2;
+            if(canPass(weights, days, mid)){
+                bestans = mid;
+                high = mid-1;
+
+            }
+            else {
+                low = mid+1;
+            }
+        }
+     return bestans;
+        
+
+    }
+};
