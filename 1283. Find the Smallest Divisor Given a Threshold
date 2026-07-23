@@ -1,0 +1,28 @@
+class Solution {
+public:
+    
+    bool minimumSum(vector<int>& nums, int threshold, int m){
+        long long currSum =0;
+        for(int i=0; i<nums.size(); i++){
+             currSum+= (nums[i] + m -1)/m;
+        }
+        return currSum <= threshold;
+    }
+    int smallestDivisor(vector<int>& nums, int threshold) {
+        int low =1 ;
+        int high = *max_element(nums.begin(), nums.end());
+        int bestDivisor = high;
+        while(low <= high){
+            int mid = low + (high-low)/2;
+            if(minimumSum(nums, threshold, mid)){
+                bestDivisor = mid;
+                high = mid-1;
+            }
+            else {
+                low = mid+1;
+            }
+        }
+        return bestDivisor;
+        
+    }
+};
