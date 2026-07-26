@@ -1,0 +1,29 @@
+class Solution {
+public:
+    string reverseWords(string s) {
+     string result  = "";
+     int right = s.length()-1;
+     while(right>=0){
+        while (right >= 0 && s[right] == ' ') {
+            right--;
+        }
+        if(right<0){
+            break;
+        }
+        int end = right;
+        int left = right;
+        while(left >=0 && s[left] != ' '){
+            left--;
+        }
+        if(result.length()>0){
+            result += " ";
+        }
+        result += s.substr(left+1, end-left);
+        right = left;
+        
+
+     }
+    return result;
+     
+    }
+};
