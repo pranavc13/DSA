@@ -1,0 +1,17 @@
+class Solution {
+public:
+    string removeDuplicates(string s) {
+        int slow =0;
+        for(int fast =0; fast<s.length(); fast++){
+            if(slow>0 && s[slow-1] == s[fast]){
+                slow--;
+            }
+            else {
+                s[slow] = s[fast];
+                slow++;
+            }
+        }
+        s.resize(slow);
+        return s;
+    }
+};
