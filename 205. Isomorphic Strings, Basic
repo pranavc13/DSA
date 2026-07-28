@@ -1,0 +1,29 @@
+class Solution {
+public:
+    bool isIsomorphic(string s, string t) {
+     if(s.length() != t.length()){
+        return false;
+     }
+     unordered_map<char, char>S2T;
+     unordered_map<char, char>T2S;
+     for(int i=0; i<s.length(); i++){
+        char charS = s[i];
+        char charT = t[i];
+
+        if(S2T.find(charS) != S2T.end()){
+            if(S2T[charS] != charT){
+                return false;
+            }
+        }
+        else{
+            if(T2S.find(charT) != T2S.end()){
+                return false;
+            }
+            S2T[charS] = charT;
+            T2S[charT] = charS;
+        }
+     }
+     return true;
+        
+    }
+};
