@@ -1,0 +1,56 @@
+#include <iostream>
+#include <string>
+#include <vector>
+
+using namespace std;
+
+void slidingWindowSearch(string text, string pattern) {
+    int n = text.length();
+    int k = pattern.length(); // 'k' is the fixed size of our sliding window
+    
+    // We will store all our 1-based match positions here
+    vector<int> positions;
+
+    // OUTER LOOP: This SLIDES the window one character at a time.
+    // It stops at (n - k) so the window doesn't fall off the edge of the text.
+    for (int i = 0; i <= n - k; i++) {
+        bool isMatch = true;
+        
+        // INNER LOOP: This checks the characters INSIDE the current window.
+        for (int j = 0; j < k; j++) {
+            // text[i + j] points to the specific letter currently inside the window
+            if (text[i + j] != pattern[j]) {
+                isMatch = false; // A letter didn't match, stop checking this window
+                break;
+            }
+        }
+        
+        // If we checked the whole window and isMatch is still true, we found a match!
+        if (isMatch) {
+            positions.push_back(i + 1); // Add 1 for 1-based indexing
+        }
+    }
+
+    // Print the exact output format requested by the problem
+    if (positions.empty()) {
+        cout << "No match found\n";
+    } else {
+        cout << "Match Count: " << positions.size() << "\n";
+        for (int i = 0; i < positions.size(); i++) {
+            cout << "Position: " << positions[i] << "\n";
+        }
+    }
+}
+
+int main() {
+    string text, pattern;
+    
+    // Read the inputs from the terminal
+    cin >> text;
+    cin >> pattern;
+    
+    // Run the sliding window logic
+    slidingWindowSearch(text, pattern);
+    
+    return 0;
+}
