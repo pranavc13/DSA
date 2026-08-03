@@ -1,0 +1,52 @@
+#include <iostream>
+#include <vector>
+#include <string>
+#include <set>
+#include <cctype>
+
+using namespace std;
+string tolowercase(string s){
+    string result ="";
+    for(char c: s){
+        result += tolower(c);
+    }
+    return result;
+}
+int main(){
+    int n;
+    cin>>n;
+    set<string>sactioned;
+    string dummy;
+    getline(cin, dummy);
+    for(int i=0; i<n; i++){
+        string app;
+        getline(cin, app);
+        sactioned.insert(tolowercase(app));
+    }
+    int m;
+    cin>>m;
+    set<string> discovered;
+    getline(cin, dummy);
+    for(int i=0; i<m; i++){
+        string app;
+        getline(cin, app);
+        discovered.insert(tolowercase(app));
+    }
+    vector<string>notfound;
+    for(auto& ch : discovered){
+        if(sactioned.find(ch) == sactioned.end()){
+            notfound.push_back(ch);
+        }
+    }
+    if(notfound.empty()){
+        cout<<"NONE"<<"\n";
+    }
+    else {
+        for(int i=0; i<notfound.size(); i++){
+            cout<<notfound[i]<<"\n";
+        }
+    }
+    return 0;
+    
+
+}
