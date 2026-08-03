@@ -1,0 +1,53 @@
+#include<iostream>
+#include<algorithm>
+#include<map>
+ 
+using namespace std;
+bool canMake(long long mid, long long B, long long S, long long C, 
+             long long bread, long long sausage, long long cheese, 
+             long long pb, long long ps, long long pc, 
+             long long ruble){
+    long long buy_bread = max(0LL, (B* mid) - bread);
+    long long buy_sausage = max(0LL, (S * mid) - sausage);
+    long long buy_cheese = max(0LL, (C * mid) - cheese);
+    long long total_cost = (buy_bread * pb) + (buy_sausage * ps) + (buy_cheese * pc);
+    return total_cost <=ruble;
+}
+int main(){
+    string recipe;
+    cin>>recipe;
+    int bread, sausage, cheese;
+    cin>>bread>>sausage>>cheese;
+    int pb, ps, pc;
+    cin>>pb>>ps>>pc;
+    long long ruble;
+    cin>>ruble;
+    int B = 0, S = 0, C = 0;
+    for(int i=0; i<recipe.length(); i++){
+        if(recipe[i] ==  'B'){
+            B++;
+        }
+        else if(recipe[i] == 'S'){
+            S++;
+        }
+        else if(recipe[i] == 'C') {
+            C++;
+        }
+    }
+    long long low = 0;
+    long long high = 1000000000100;
+    long long  bestValue = 0;
+    while(low<=high){
+        long long mid = low + (high - low )/2;
+        if(canMake(mid, B, S, C, bread, sausage, cheese, pb, ps, pc, ruble)){
+            bestValue = mid;
+            low = mid+1;
+        }
+        else {
+            high = mid-1;
+        }
+    }
+    cout<<bestValue<<"\n";
+    return 0;
+    
+}
