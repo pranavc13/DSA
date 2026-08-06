@@ -1,0 +1,33 @@
+#include<bits/stdc++.h>
+using namespace std;
+ 
+int main(){
+    int n;
+    cin>>n;
+    vector<long long>teacher(n);
+    for(int i=0; i<n; i++){
+        cin>>teacher[i];
+    }
+    for(int i=0; i<n; i++){
+        long long b_score = 0;
+        cin>>b_score;
+        teacher[i] = teacher[i] - b_score;
+        
+    }
+    sort(teacher.begin(), teacher.end());
+    long long valid_pairs = 0;
+    int left = 0;
+    int right = n-1;
+    while(left < right){
+        if(teacher[right] + teacher[left] > 0){
+            valid_pairs += right - left;
+            right--;
+        }
+        else {
+            left++;
+        }
+        
+    }
+    cout<<valid_pairs<<"\n";
+    return 0;
+}
