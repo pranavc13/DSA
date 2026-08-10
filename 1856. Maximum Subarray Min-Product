@@ -1,0 +1,33 @@
+class Solution {
+public:
+    int maxSumMinProduct(vector<int>& nums) {
+        int n = nums.size();
+        vector<long long>prefix(n+1);
+        for(int i=0; i<n; i++){
+         prefix[i+1] = prefix[i] + nums[i];
+        }
+        vector<int>left_wall(n, -1);
+        vector<int>right_wall(n,n);
+        stack<int>st;
+        for(int i=0; i<n; i++){
+            while(!st.empty() && nums[st.top()] >= nums[i]){
+               right_wall[st.top()] = i;
+               st.pop();
+            }
+            if(!st.empty()){
+                left_wall[i] = st.top();
+            }
+            st.push(i);
+        }
+        long long max_product = 0;
+        
+        for (int i = 0; i < n; i++) {
+            int L = left_wall[i] + 1;
+            int R = right_wall[i] - 1;
+            long long window_sum = prefix[R + 1] - prefix[L];
+            long long current_product = window_sum * nums[i];
+            max_product = max(max_product, current_product);
+        }
+        return max_product % 1000000007;
+    }
+};
