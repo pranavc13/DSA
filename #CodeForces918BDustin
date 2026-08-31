@@ -1,0 +1,26 @@
+#include<iostream>
+#include<unordered_map>
+#include<vector>
+ 
+using namespace std;
+ 
+int main(){
+    int n, k;
+    cin>>n>>k;
+    unordered_map<string, string>check;
+    for(int i=0; i<n; i++){
+        string name, ip;
+        cin>>name>>ip;
+        check.insert({ip, name});
+    }
+    for(int i=0; i<k; i++){
+        string name, ip;
+        cin>>name>>ip;
+        ip.pop_back();
+        string serverName = check[ip];
+        cout << name << " " << ip <<";#" << serverName << "\n";
+        
+    }
+    return 0;
+    
+}
